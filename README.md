@@ -327,3 +327,18 @@ ng g service profile/services/profile-data
 - When you save the form - check what response comes back from the server
 - Are there any extra properties we don't want, and why?
 - How can we protect against this?
+
+## NgRx / Shared State
+
+We now have a bit of a problem - we want to have the profile name display in the header, and be
+reflected when we update the profile.
+
+Right now this state isn't being stored anywhere.
+
+### Requirements
+
+- Setup NgRx Store for profile
+- Create reducer for managing profile state
+- Create Effect for calling the API
+- Update the Navigation Header to read name from state
+- Update Edit Form to get details from state
