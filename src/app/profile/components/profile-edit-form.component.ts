@@ -1,10 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  Validators,
-  ValidatorFn
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ValidatorFn } from '@angular/forms';
 
 function confirmEmail(formGroup: FormGroup): Validators {
   const a = formGroup.get('email').value;
@@ -35,10 +30,7 @@ export class ProfileEditFormComponent implements OnInit {
         languageId: [],
         firstName: ['', [Validators.required]],
         lastName: ['', [Validators.required]],
-        averageNumberOfHoursPerDay: [
-          '',
-          [Validators.required, Validators.min(0), Validators.max(24)]
-        ],
+        averageNumberOfHoursPerDay: ['', [Validators.required, Validators.min(0), Validators.max(24)]],
         email: [],
         confirmEmail: []
       },
