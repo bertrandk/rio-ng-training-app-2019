@@ -158,3 +158,109 @@ const routes: Routes = [
 })
 export class AppRoutingModule {}
 ```
+
+## Reactive Form Validators
+
+- Can apply validators at the field level
+- FormGroup level
+- FormArray level
+
+### Requirements
+
+- Create an `email` and `confirmEmail` form field
+- Create a custom validator that ensures they are the same value
+- Display an error message if the fields do not match
+
+#### Extra
+
+- Can you make the validator more general to compare any two fields, and not have the field names hardcoded?
+- How would you make the error name configurable also?
+
+### Custom Validators
+
+- When applied at the field level, get access to the FieldControl.
+- When applied at the group level, get access to the FieldGroup.
+- Validators return null if they are valid.
+- Validators return an object with validation details if they are in valid.
+- You can create functions that return a validator if you want to apply a configuration.
+
+Example from the `Validators.max`[source](https://github.com/angular/angular/blob/81671cea9a2ca677dfcf433b6f3e5a27da944f6e/packages/forms/src/validators.ts#L125)
+
+```ts
+function max(max: number): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    if (isEmptyInputValue(control.value) || isEmptyInputValue(max)) {
+      return null; // don't validate empty values to allow optional controls
+    }
+    const value = parseFloat(control.value);
+    // Controls with NaN values after parsing should be treated as not having a
+    // maximum, per the HTML forms spec: https://www.w3.org/TR/html5/forms.html#attr-input-max
+    return !isNaN(value) && value > max
+      ? { max: { max: max, actual: control.value } }
+      : null;
+  };
+}
+```
+
+_note_ : the top level key in the object that you return, is what the error will be called, and you can check if a field / form has an error using
+
+```ts
+fb.hasError('max');
+fb.get('someField').hasError('max)
+```
+
+### Displaying Errors
+
+```html
+<mat-error *ngIf="form.get('firstName').hasError('required')">
+  First Name is a required field.
+</mat-error>
+```
+
+You can also use `*ngIf/as` to get the underlying error object:
+
+```html
+<mat-error
+  *ngIf="form.get('averageNumberOfHoursPerDay').getError('min') as min"
+>
+  Minimum value is {{ min.min }}, got {{ min.actual }} instead
+</mat-error>
+```
+
+## Services / DI
+
+### Requirements
+
+- Create a ProfileData service in the ProfileModule
+- Create an Interface under app/models to describe the shape of the profile
+- URL: https://rio-ng-training.now.sh/profile
+  - GET
+  - PUT
+  - POST
+- Use service to populate correct name in app header
+- Use service to populate profile edit form
+- Update form to submit details to API
+
+example json response:
+
+```json
+ {
+    "id": 1,
+    "image": "profile-image.jpg",
+    "languageId": 1,
+    "firstName": "Evan",
+    "lastName": "Schultz",
+    "averageNumberOfHoursPerDay": 3,
+    "email": "evan@rangle.io"
+  },
+```
+
+```bash
+ng g service profile/services/profile-data
+```
+
+#### Extra
+
+- When you save the form - check what response comes back from the server
+- Are there any extra properties we don't want, and why?
+- How can we protect against this?
