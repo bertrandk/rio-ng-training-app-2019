@@ -1,0 +1,13 @@
+@import '~@angular/material/theming';
+@import './core/site-header/site-header-theme';
+
+@mixin rio-app-theme($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+  $next-theme: mat-palette($mat-red);
+
+  @include rio-site-header-theme($theme);
+}
