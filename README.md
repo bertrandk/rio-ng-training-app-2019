@@ -158,3 +158,60 @@ const routes: Routes = [
 })
 export class AppRoutingModule {}
 ```
+
+## Reactive Form Validators
+
+- Can apply validators at the field level
+- FormGroup level
+- FormArray level
+
+### Requirements
+
+- Create an `email` and `confirmEmail` form field
+- Create a custom validator that ensures they are the same value
+- Display an error message if the fields do not match
+
+#### Extra
+
+- Can you make the validator more general to compare any two fields, and not have the field names hardcoded?
+
+### Custom Validators
+
+- When applied at the field level, get access to the FieldControl.
+- When applied at the group level, get access to the FieldGroup.
+- Validators return null if they are valid.
+- Validators return an object with validation details if they are in valid.
+- You can create functions that return a validator if you want to apply a configuration.
+
+Example from the `Validators.max`[source](https://github.com/angular/angular/blob/81671cea9a2ca677dfcf433b6f3e5a27da944f6e/packages/forms/src/validators.ts#L125)
+
+```ts
+function max(max: number): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    if (isEmptyInputValue(control.value) || isEmptyInputValue(max)) {
+      return null; // don't validate empty values to allow optional controls
+    }
+    const value = parseFloat(control.value);
+    // Controls with NaN values after parsing should be treated as not having a
+    // maximum, per the HTML forms spec: https://www.w3.org/TR/html5/forms.html#attr-input-max
+    return !isNaN(value) && value > max
+      ? { max: { max: max, actual: control.value } }
+      : null;
+  };
+}
+```
+
+_note_ : the top level key in the object that you return, is what the error will be called, and you can check if a field / form has an error using
+
+```ts
+fb.hasError('max');
+fb.get('someField').hasError('max)
+```
+
+### Displaying Errors
+
+```html
+<mat-error *ngIf="form.get('firstName').hasError('required')">
+  First Name is a required field.
+</mat-error>
+```
