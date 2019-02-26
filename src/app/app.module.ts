@@ -10,6 +10,10 @@ import { SharedModule } from './shared/shared.module';
 import { HomeComponent } from './components/home/home.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './store/reducers';
+import { EffectsModule } from '@ngrx/effects';
+import { AppEffects } from './effects/app.effects';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent],
@@ -21,7 +25,9 @@ import { HttpClientModule } from '@angular/common/http';
     CoreModule,
     ReactiveFormsModule,
     SharedModule,
-    AppRoutingModule
+    AppRoutingModule,
+    StoreModule.forRoot(reducers, { metaReducers }),
+    EffectsModule.forRoot([AppEffects])
   ],
   exports: [TrainingMaterialModule],
   providers: [],
