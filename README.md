@@ -228,14 +228,35 @@ You can also use `*ngIf/as` to get the underlying error object:
 ### Requirements
 
 - Create a ProfileData service in the ProfileModule
+- Create an Interface under app/models to describe the shape of the profile
 - URL: https://rio-ng-training.now.sh/profile
   - GET
   - PUT
   - POST
-- Use service to populate correct name in app hjeader
+- Use service to populate correct name in app header
 - Use service to populate profile edit form
 - Update form to submit details to API
+
+example json response:
+
+```json
+ {
+    "id": 1,
+    "image": "profile-image.jpg",
+    "languageId": 1,
+    "firstName": "Evan",
+    "lastName": "Schultz",
+    "averageNumberOfHoursPerDay": 3,
+    "email": "evan@rangle.io"
+  },
+```
 
 ```bash
 ng g service profile/services/profile-data
 ```
+
+#### Extra
+
+- When you save the form - check what response comes back from the server
+- Are there any extra properties we don't want, and why?
+- How can we protect against this?

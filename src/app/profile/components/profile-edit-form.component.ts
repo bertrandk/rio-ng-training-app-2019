@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  Validators,
-  ValidatorFn
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ValidatorFn } from '@angular/forms';
+import { ProfileDataService } from '../services/profile-data.service';
 
 function confirmFields(fieldA: string, fieldB: string) {
   return function compare(formGroup: FormGroup): Validators {
@@ -27,7 +23,7 @@ function confirmFields(fieldA: string, fieldB: string) {
   styleUrls: ['./profile-edit-form.component.scss']
 })
 export class ProfileEditFormComponent implements OnInit {
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private profileData: ProfileDataService) {}
   form: FormGroup;
   ngOnInit() {
     this.form = this.fb.group(
@@ -37,19 +33,23 @@ export class ProfileEditFormComponent implements OnInit {
         languageId: [],
         firstName: ['', [Validators.required]],
         lastName: ['', [Validators.required]],
-        averageNumberOfHoursPerDay: [
-          '',
-          [Validators.required, Validators.min(0), Validators.max(24)]
-        ],
-        email: [],
-        confirmEmail: []
+        averageNumberOfHoursPerDay: ['', [Validators.required, Validators.min(0), Validators.max(24)]],
+        email: ['', Validators.required],
+        confirmEmail: ['', Validators.required]
       },
       {
         validators: confirmFields('email', 'confirmEmail')
       }
     );
+    this.profileData.get().subscribe(n => {
+      this.form.reset(n);
+    });
   }
   public onSubmit() {
-    console.log('proper');
+    if (this.form.valid) {
+      this.profileData.put(this.form.value).subscribe(n => {
+        console.log(`Saved!`, { ...n });
+      });
+    }
   }
 }
