@@ -1,7 +1,7 @@
 <section class="content-wrapper">
   <mat-card class="profile-card">
     <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
-      <mat-card-title>My Profile</mat-card-title>
+      <mat-card-title>My Profile {{ form.valid }}</mat-card-title>
       <mat-card-content>
         <div class="form-container">
           <mat-form-field>
@@ -57,6 +57,17 @@
               Minimum value is {{ min.min }}, got {{ min.actual }} instead
             </mat-error>
           </mat-form-field>
+          <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" type="email" />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Confirm Email</mat-label>
+            <input matInput formControlName="confirmEmail" type="email" />
+          </mat-form-field>
+          <mat-error *ngIf="form.getError('confirmEmail') as confirmEmail">
+            {{ confirmEmail | json }}
+          </mat-error>
         </div>
       </mat-card-content>
       <mat-card-actions>
