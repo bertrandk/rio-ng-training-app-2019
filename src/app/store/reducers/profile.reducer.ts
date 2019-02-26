@@ -23,8 +23,10 @@ export const INITIAL_STATE: State = {
 export function profileReducer(state: State = INITIAL_STATE, action: any) {
   switch (action.type) {
     case '[LOAD_PROFILE]':
+    case '[SAVE_PROFILE]':
       return { ...state, isLoading: true };
     case '[Profile API] Profile Loaded Success':
+    case '[Profile API] Profile Saved Success':
       return { ...state, current: { ...action.payload }, isLoading: false };
     default:
       return state;

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ValidatorFn } from '@angular/forms';
 import { ProfileDataService } from '../services/profile-data.service';
+import { Store, select } from '@ngrx/store';
+import { State } from '../..//store/reducers';
+import { take, filter, tap } from 'rxjs/operators';
 
 function confirmFields(fieldA: string, fieldB: string) {
   return function compare(formGroup: FormGroup): Validators {
@@ -23,7 +26,7 @@ function confirmFields(fieldA: string, fieldB: string) {
   styleUrls: ['./profile-edit-form.component.scss']
 })
 export class ProfileEditFormComponent implements OnInit {
-  constructor(private fb: FormBuilder, private profileData: ProfileDataService) {}
+  constructor(private fb: FormBuilder, private profileData: ProfileDataService, private store$: Store<State>) {}
   form: FormGroup;
   ngOnInit() {
     this.form = this.fb.group(
@@ -41,15 +44,19 @@ export class ProfileEditFormComponent implements OnInit {
         validators: confirmFields('email', 'confirmEmail')
       }
     );
-    this.profileData.get().subscribe(n => {
-      this.form.reset(n);
-    });
+    this.store$
+      .pipe(
+        select(state => state.profile.current),
+        filter(n => n.id !== null),
+        tap(n => console.log(n))
+      )
+      .subscribe(n => {
+        this.form.patchValue(n);
+      });
   }
   public onSubmit() {
     if (this.form.valid) {
-      this.profileData.put(this.form.value).subscribe(n => {
-        console.log(`Saved!`, { ...n });
-      });
+      this.store$.dispatch({ type: '[SAVE PROFILE]', payload: this.form.value });
     }
   }
 }

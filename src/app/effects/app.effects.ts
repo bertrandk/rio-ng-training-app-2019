@@ -16,5 +16,15 @@ export class AppEffects {
       )
     )
   );
+  @Effect()
+  saveProfile$ = this.actions$.pipe(
+    ofType('[SAVE PROFILE]'),
+    mergeMap(({ payload }) => {
+      return this.profileData.put(payload).pipe(
+        map(profile => ({ type: '[Profile API] Profile Saved Success', payload: profile })),
+        catchError(() => EMPTY)
+      );
+    })
+  );
   constructor(private actions$: Actions, private profileData: ProfileDataService) {}
 }
