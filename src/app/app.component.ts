@@ -1,5 +1,7 @@
 import { Component, ChangeDetectorRef, OnDestroy, OnInit } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
+import { Store } from '@ngrx/store';
+import { State } from './store/reducers';
 
 @Component({
   selector: 'app-root',
@@ -12,14 +14,16 @@ export class AppComponent implements OnInit, OnDestroy {
   // tslint:disable-next-line: variable-name
   private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private store: Store<State>) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     // tslint:disable-next-line: deprecation
     this.mobileQuery.addListener(this._mobileQueryListener);
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.store.dispatch({ type: '[LOAD_PROFILE]' });
+  }
   ngOnDestroy(): void {
     // tslint:disable-next-line: deprecation
     this.mobileQuery.removeListener(this._mobileQueryListener);
