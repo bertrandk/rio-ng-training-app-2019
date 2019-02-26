@@ -65,7 +65,7 @@
             <mat-label>Confirm Email</mat-label>
             <input matInput formControlName="confirmEmail" type="email" />
           </mat-form-field>
-          <mat-error *ngIf="form.getError('confirmEmail') as confirmEmail">
+          <mat-error *ngIf="form.getError('confirmFields') as confirmEmail">
             {{ confirmEmail | json }}
           </mat-error>
         </div>

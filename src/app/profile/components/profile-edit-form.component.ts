@@ -6,18 +6,20 @@ import {
   ValidatorFn
 } from '@angular/forms';
 
-function confirmEmail(formGroup: FormGroup): Validators {
-  const a = formGroup.get('email').value;
-  const b = formGroup.get('confirmEmail').value;
-  return a === b
-    ? null
-    : {
-        confirmEmail: {
-          message: `expected email and confirm email to match`,
-          email: a,
-          confirmEmail: b
-        }
-      };
+function confirmFields(fieldA: string, fieldB: string) {
+  return function compare(formGroup: FormGroup): Validators {
+    const a = formGroup.get(fieldA).value;
+    const b = formGroup.get(fieldB).value;
+    return a === b
+      ? null
+      : {
+          confirmFields: {
+            message: `Expected fields ${fieldA} and ${fieldB} to match`,
+            [fieldA]: a,
+            [fieldB]: b
+          }
+        };
+  };
 }
 @Component({
   selector: 'app-profile-edit-form',
@@ -43,7 +45,7 @@ export class ProfileEditFormComponent implements OnInit {
         confirmEmail: []
       },
       {
-        validators: confirmEmail
+        validators: confirmFields('email', 'confirmEmail')
       }
     );
   }
