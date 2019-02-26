@@ -174,6 +174,7 @@ export class AppRoutingModule {}
 #### Extra
 
 - Can you make the validator more general to compare any two fields, and not have the field names hardcoded?
+- How would you make the error name configurable also?
 
 ### Custom Validators
 
@@ -194,9 +195,7 @@ function max(max: number): ValidatorFn {
     const value = parseFloat(control.value);
     // Controls with NaN values after parsing should be treated as not having a
     // maximum, per the HTML forms spec: https://www.w3.org/TR/html5/forms.html#attr-input-max
-    return !isNaN(value) && value > max
-      ? { max: { max: max, actual: control.value } }
-      : null;
+    return !isNaN(value) && value > max ? { max: { max: max, actual: control.value } } : null;
   };
 }
 ```
@@ -215,3 +214,49 @@ fb.get('someField').hasError('max)
   First Name is a required field.
 </mat-error>
 ```
+
+You can also use `*ngIf/as` to get the underlying error object:
+
+```html
+<mat-error *ngIf="form.get('averageNumberOfHoursPerDay').getError('min') as min">
+  Minimum value is {{ min.min }}, got {{ min.actual }} instead
+</mat-error>
+```
+
+## Services / DI
+
+### Requirements
+
+- Create a ProfileData service in the ProfileModule
+- Create an Interface under app/models to describe the shape of the profile
+- URL: https://rio-ng-training.now.sh/profile
+  - GET
+  - PUT
+  - POST
+- Use service to populate correct name in app header
+- Use service to populate profile edit form
+- Update form to submit details to API
+
+example json response:
+
+```json
+ {
+    "id": 1,
+    "image": "profile-image.jpg",
+    "languageId": 1,
+    "firstName": "Evan",
+    "lastName": "Schultz",
+    "averageNumberOfHoursPerDay": 3,
+    "email": "evan@rangle.io"
+  },
+```
+
+```bash
+ng g service profile/services/profile-data
+```
+
+#### Extra
+
+- When you save the form - check what response comes back from the server
+- Are there any extra properties we don't want, and why?
+- How can we protect against this?
