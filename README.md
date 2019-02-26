@@ -64,3 +64,97 @@ ng g component core/site-header --m=core --export=true
 ```
 ng g component components/home --m=app --export=false
 ```
+
+## Profile Form Setup
+
+- Generate Profile Route Landing
+
+```bash
+ng g component profile/profile --flat=true --m=profile
+```
+
+- Add Router Outlet to Template
+
+```html
+<router-outlet></router-outlet>
+```
+
+- Create Profile Edit Form
+
+```bash
+ng g component profile/components/profile-edit-form --flat=true --m=profile
+```
+
+- Profile: Setup Routing to Compomnent
+
+```ts
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { ProfileComponent } from './profile.component';
+import { ProfileEditFormComponent } from './components/profile-edit-form.component';
+
+const routes: Routes = [
+  {
+    path: '',
+    component: ProfileComponent,
+    children: [
+      {
+        path: 'edit',
+        component: ProfileEditFormComponent
+      },
+      {
+        path: '',
+        redirectTo: 'edit'
+      }
+    ]
+  }
+];
+
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
+})
+export class ProfileRoutingModule {}
+```
+
+- Have the `Profile` component in the `ProfileModule`
+
+```ts
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+import { ProfileRoutingModule } from './profile-routing.module';
+import { ProfileComponent } from './profile.component';
+import { ProfileEditFormComponent } from './components/profile-edit-form.component';
+
+@NgModule({
+  declarations: [ProfileEditFormComponent, ProfileComponent],
+  imports: [CommonModule, ProfileRoutingModule],
+  entryComponents: []
+})
+export class ProfileModule {}
+``
+
+- App: Setup Profile Route
+
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { HomeComponent } from './components/home/home.component';
+
+const routes: Routes = [
+  {
+    path: 'profile',
+    loadChildren: './profile/profile.module#ProfileModule'
+  },
+  {
+    path: '',
+    component: HomeComponent
+  }
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule {}
+```

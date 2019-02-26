@@ -8,16 +8,18 @@ import { TrainingMaterialModule } from '../training-material.module';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { HomeComponent } from './components/home/home.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
     TrainingMaterialModule,
     CoreModule,
-    SharedModule
+    ReactiveFormsModule,
+    SharedModule,
+    AppRoutingModule
   ],
   exports: [TrainingMaterialModule],
   providers: [],
