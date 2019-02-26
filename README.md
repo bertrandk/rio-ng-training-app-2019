@@ -174,6 +174,7 @@ export class AppRoutingModule {}
 #### Extra
 
 - Can you make the validator more general to compare any two fields, and not have the field names hardcoded?
+- How would you make the error name configurable also?
 
 ### Custom Validators
 
@@ -194,9 +195,7 @@ function max(max: number): ValidatorFn {
     const value = parseFloat(control.value);
     // Controls with NaN values after parsing should be treated as not having a
     // maximum, per the HTML forms spec: https://www.w3.org/TR/html5/forms.html#attr-input-max
-    return !isNaN(value) && value > max
-      ? { max: { max: max, actual: control.value } }
-      : null;
+    return !isNaN(value) && value > max ? { max: { max: max, actual: control.value } } : null;
   };
 }
 ```
@@ -213,5 +212,13 @@ fb.get('someField').hasError('max)
 ```html
 <mat-error *ngIf="form.get('firstName').hasError('required')">
   First Name is a required field.
+</mat-error>
+```
+
+You can also use `*ngIf/as` to get the underlying error object:
+
+```html
+<mat-error *ngIf="form.get('averageNumberOfHoursPerDay').getError('min') as min">
+  Minimum value is {{ min.min }}, got {{ min.actual }} instead
 </mat-error>
 ```
