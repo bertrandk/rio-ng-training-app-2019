@@ -2,6 +2,7 @@ import { Component, ChangeDetectorRef, OnDestroy, OnInit } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { Store } from '@ngrx/store';
 import { State } from './store/reducers';
+import { LoadProfile } from './store/reducers/profile.reducer';
 
 @Component({
   selector: 'app-root',
@@ -22,7 +23,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.store.dispatch({ type: '[LOAD_PROFILE]' });
+    this.store.dispatch(new LoadProfile());
   }
   ngOnDestroy(): void {
     // tslint:disable-next-line: deprecation

@@ -4,6 +4,7 @@ import { ProfileDataService } from '../services/profile-data.service';
 import { Store, select } from '@ngrx/store';
 import { State } from '../..//store/reducers';
 import { take, filter, tap } from 'rxjs/operators';
+import { SaveProfile } from 'src/app/store/reducers/profile.reducer';
 
 function confirmFields(fieldA: string, fieldB: string) {
   return function compare(formGroup: FormGroup): Validators {
@@ -56,7 +57,7 @@ export class ProfileEditFormComponent implements OnInit {
   }
   public onSubmit() {
     if (this.form.valid) {
-      this.store$.dispatch({ type: '[SAVE PROFILE]', payload: this.form.value });
+      this.store$.dispatch(new SaveProfile({ ...this.form.value }));
     }
   }
 }
