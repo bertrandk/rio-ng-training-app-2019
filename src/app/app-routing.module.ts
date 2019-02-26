@@ -4,9 +4,12 @@ import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
   {
+    path: 'profile',
+    loadChildren: './profile/profile.module#ProfileModule'
+  },
+  {
     path: '',
-    component: HomeComponent,
-    pathMatch: 'full'
+    component: HomeComponent
   }
 ];
 

@@ -1,0 +1,75 @@
+<section class="content-wrapper">
+  <mat-card class="profile-card">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+      <mat-card-title>My Profile</mat-card-title>
+      <mat-card-content>
+        <div class="form-container">
+          <mat-form-field>
+            <mat-label>First Name</mat-label>
+            <input
+              matInput
+              formControlName="firstName"
+              type="text"
+              name="firstName"
+            />
+            <mat-error *ngIf="form.get('firstName').hasError('required')">
+              First Name is a required field.
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Last Name</mat-label>
+            <input
+              matInput
+              formControlName="lastName"
+              type="text"
+              name="lastName"
+            />
+            <mat-error *ngIf="form.get('lastName').hasError('required')">
+              Last Name is a required field.
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Avg Play Per Day</mat-label>
+            <input
+              matInput
+              formControlName="averageNumberOfHoursPerDay"
+              type="number"
+            />
+            <mat-error
+              *ngIf="
+                form.get('averageNumberOfHoursPerDay').hasError('required')
+              "
+            >
+              Avg Play Per Dayis a required field.
+            </mat-error>
+            <mat-error
+              *ngIf="
+                form.get('averageNumberOfHoursPerDay').getError('max') as max
+              "
+            >
+              Maximum value is {{ max.max }}, got {{ max.actual }} instead
+            </mat-error>
+            <mat-error
+              *ngIf="
+                form.get('averageNumberOfHoursPerDay').getError('min') as min
+              "
+            >
+              Minimum value is {{ min.min }}, got {{ min.actual }} instead
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button
+          mat-raised-button
+          color="primary"
+          [disabled]="form.invalid"
+          type="submit"
+        >
+          SAVE
+        </button>
+        <a mat-button [routerLink]="['/profile']">CANCEL</a>
+      </mat-card-actions>
+    </form>
+  </mat-card>
+</section>
