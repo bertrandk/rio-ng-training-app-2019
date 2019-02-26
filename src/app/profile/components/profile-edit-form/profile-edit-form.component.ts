@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ValidatorFn } from '@angular/forms';
-import { ProfileDataService } from '../services/profile-data.service';
+import { ProfileDataService } from '../../services/profile-data.service';
 import { Store, select } from '@ngrx/store';
-import { State } from '../..//store/reducers';
+import { State } from '../../../store/reducers';
 import { take, filter, tap } from 'rxjs/operators';
 import { SaveProfile } from 'src/app/store/reducers/profile.reducer';
+
+import { Profile } from '../../../models/profile.dto';
 
 function confirmFields(fieldA: string, fieldB: string) {
   return function compare(formGroup: FormGroup): Validators {
@@ -26,9 +28,16 @@ function confirmFields(fieldA: string, fieldB: string) {
   templateUrl: './profile-edit-form.component.html',
   styleUrls: ['./profile-edit-form.component.scss']
 })
-export class ProfileEditFormComponent implements OnInit {
+export class ProfileEditFormComponent implements OnInit, OnChanges {
   constructor(private fb: FormBuilder, private profileData: ProfileDataService, private store$: Store<State>) {}
+  @Input() profile: Profile;
+  @Output() save: EventEmitter<Profile> = new EventEmitter();
   form: FormGroup;
+  ngOnChanges(changes: SimpleChanges): void {
+    if (!changes.profile.firstChange) {
+      this.form.setValue(changes.profile.currentValue);
+    }
+  }
   ngOnInit() {
     this.form = this.fb.group(
       {
@@ -45,19 +54,11 @@ export class ProfileEditFormComponent implements OnInit {
         validators: confirmFields('email', 'confirmEmail')
       }
     );
-    this.store$
-      .pipe(
-        select(state => state.profile.current),
-        filter(n => n.id !== null),
-        tap(n => console.log(n))
-      )
-      .subscribe(n => {
-        this.form.patchValue(n);
-      });
   }
+
   public onSubmit() {
     if (this.form.valid) {
-      this.store$.dispatch(new SaveProfile({ ...this.form.value }));
+      this.save.emit(this.form.value);
     }
   }
 }

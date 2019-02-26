@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ProfileComponent } from './profile.component';
-import { ProfileEditFormComponent } from './components/profile-edit-form.component';
+import { ProfileEditComponent } from './components/profile-edit/profile-edit.component';
 
 const routes: Routes = [
   {
@@ -10,7 +10,7 @@ const routes: Routes = [
     children: [
       {
         path: 'edit',
-        component: ProfileEditFormComponent
+        component: ProfileEditComponent
       },
       {
         path: '',

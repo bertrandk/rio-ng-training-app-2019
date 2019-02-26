@@ -1,0 +1,8 @@
+<section>
+  <ng-container *ngIf="(profile$ | async) as profile; else loading">
+    <app-profile-edit-form [profile]="profile" (save)="onSave($event)"> </app-profile-edit-form>
+  </ng-container>
+  <ng-template #loading>
+    ....please waits
+  </ng-template>
+</section>
