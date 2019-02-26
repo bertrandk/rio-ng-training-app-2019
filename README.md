@@ -222,3 +222,20 @@ You can also use `*ngIf/as` to get the underlying error object:
   Minimum value is {{ min.min }}, got {{ min.actual }} instead
 </mat-error>
 ```
+
+## Services / DI
+
+### Requirements
+
+- Create a ProfileData service in the ProfileModule
+- URL: https://rio-ng-training.now.sh/profile
+  - GET
+  - PUT
+  - POST
+- Use service to populate correct name in app hjeader
+- Use service to populate profile edit form
+- Update form to submit details to API
+
+```bash
+ng g service profile/services/profile-data
+```
