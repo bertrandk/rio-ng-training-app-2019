@@ -1,11 +1,12 @@
 <!--<nav class="rio-navbar-header">-->
 <ng-container *ngFor="let navItem of navItems; first as isFirst">
-  <a
-    mat-button
-    [routerLink]="navItem.link"
-    [attr.aria-label]="navItem.ariaLabel"
-    [ngStyle]="{ 'margin-left.px': isFirst ? 50 : '' }"
-    >{{ navItem.label }}</a
+  <a mat-button [routerLink]="navItem.link" [attr.aria-label]="navItem.ariaLabel" [ngStyle]="{ 'margin-left.px': isFirst ? 50 : '' }">
+    {{ navItem.label }}</a
   >
+</ng-container>
+<ng-container *ngIf="(fullName$ | async) as fullName">
+  <a mat-button routerLink="/profile" [attr.aria-label]="fullName">
+    {{ fullName }}
+  </a>
 </ng-container>
 <!--</nav>-->

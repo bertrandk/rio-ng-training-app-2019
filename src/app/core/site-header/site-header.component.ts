@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Store, select } from '@ngrx/store';
+import { State } from '../../store/reducers';
+import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-site-header',
@@ -6,6 +10,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./site-header.component.scss']
 })
 export class SiteHeaderComponent implements OnInit {
+  fullName$: Observable<string> = this.store$.pipe(
+    select(n => n.profile.current),
+    map(({ firstName, lastName }) => `${firstName} ${lastName}`)
+  );
   navItems = [
     {
       label: 'Game Progression',
@@ -21,17 +29,9 @@ export class SiteHeaderComponent implements OnInit {
       label: 'Dashboard',
       ariaLabel: 'Dashboard',
       link: ['/dashboard']
-    },
-    {
-      isSpacer: true
-    },
-    {
-      label: 'Evan Schultz',
-      ariaLabel: 'Evan Schultz',
-      link: ['/profile']
     }
   ];
-  constructor() {}
+  constructor(private store$: Store<State>) {}
 
   ngOnInit() {}
 }
