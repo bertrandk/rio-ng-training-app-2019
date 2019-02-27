@@ -414,3 +414,19 @@ export class ListModule {}
 ```
 
 - run again - app should work
+
+### sub modules
+
+```bash
+ng g module dashboard/sub-module -m dashboard --dry-run
+ng g component dashboard/sub-module/sub-component-one -m sub-module
+ng g component dashboard/sub-module/sub-component-two -m sub-module
+```
+
+- Even if importing `ListModule` into `DashboardModule` - it is not visible to components declared in `SubModule`
+
+```bash
+ng g component dashboard/components/dashboard-child -m dashboard
+```
+
+- DashBoardChild will have access to `ListItem` because it is declared in the same module that is importing `ListModule`
