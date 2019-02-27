@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Profile } from '../../models/profile.dto';
+import { Observable, EMPTY, of } from 'rxjs';
+import { delay } from 'rxjs/operators';
 
 const BASE_URL = `https://rio-ng-training.now.sh/profile`;
 /*
@@ -30,9 +32,9 @@ const buildProfile = ({ id, image, languageId, firstName, lastName, averageNumbe
 export class ProfileDataService {
   constructor(private httpClient: HttpClient) {}
   get() {
-    return this.httpClient.get<Profile>(`${BASE_URL}`);
+    return of({}).pipe(delay(1));
   }
   put(profile: Profile) {
-    return this.httpClient.put<Profile>(`${BASE_URL}`, profile);
+    return of({}).pipe(delay(1));
   }
 }

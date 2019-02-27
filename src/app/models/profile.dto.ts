@@ -6,4 +6,5 @@ export interface Profile {
   lastName: string;
   averageNumberOfHoursPerDay: number;
   email: string;
+  phoneNumbers: string[];
 }
