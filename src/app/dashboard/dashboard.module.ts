@@ -4,9 +4,10 @@ import { CommonModule } from '@angular/common';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
 import { ListModule } from '../lib/list/list.module';
+import { SubModuleModule } from './sub-module/sub-module.module';
 @NgModule({
   declarations: [DashboardComponent],
-  imports: [CommonModule, DashboardRoutingModule, ListModule],
+  imports: [CommonModule, DashboardRoutingModule, ListModule, SubModuleModule],
   exports: [DashboardComponent],
   entryComponents: [DashboardComponent]
 })
