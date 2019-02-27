@@ -7,10 +7,10 @@ import { ProfileEditFormComponent } from './components/profile-edit-form/profile
 import { ReactiveFormsModule } from '@angular/forms';
 import { TrainingMaterialModule } from '../../training-material.module';
 import { ProfileEditComponent } from './components/profile-edit/profile-edit.component';
-
+import { ListModule } from '../lib/list/list.module';
 @NgModule({
   declarations: [ProfileEditFormComponent, ProfileComponent, ProfileEditComponent],
-  imports: [CommonModule, ProfileRoutingModule, ReactiveFormsModule, TrainingMaterialModule],
+  imports: [CommonModule, ProfileRoutingModule, ReactiveFormsModule, TrainingMaterialModule, ListModule],
   entryComponents: []
 })
 export class ProfileModule {}

@@ -4,9 +4,14 @@
     {{ navItem.label }}</a
   >
 </ng-container>
-<ng-container *ngIf="(fullName$ | async) as fullName">
+<ng-container *ngIf="(fullName$ | async) as fullName; else temp">
   <a mat-button routerLink="/profile" [attr.aria-label]="fullName">
     {{ fullName }}
   </a>
 </ng-container>
+<ng-template #temp>
+  <a mat-button routerLink="/profile" aria-label="Profile">
+    Profile
+  </a>
+</ng-template>
 <!--</nav>-->

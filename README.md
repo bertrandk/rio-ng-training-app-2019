@@ -356,3 +356,61 @@ ng add @ngrx/store-devtools
 ```
 ng g component profile/components/profile-edit --flat=true --m=profile
 ```
+
+## Components / ng module
+
+```bash
+ng g module lib/list --m app
+ng g component lib/list
+ng g component lib/list/list-item
+ng g component lib/list/list-container
+```
+
+- If `ListModule` is added to `AppModule`
+
+  - exports of `ListModule` are avaialble in compomnents declared in `AppModule`
+    - example: `app/components/home`
+  - exports of `ListModule` are _not_ avaialble in compomnents made availalbe from imports of another module.
+
+- If `ListModule` is imported to `DashBoard`
+  - exports are available to components declared in `Dashboard`
+  - components not declared in export of `ListModule` are not available
+
+_dashboard.component.html_
+
+```html
+<section>
+  Dashboard
+  <app-list [items]="items"></app-list>
+  <!--
+    <ul>
+      <app-list-item *ngFor="let item of items" [item]="item"></app-list-item>
+    </ul>
+-->
+  <router-outlet></router-outlet>
+</section>
+```
+
+- uncomment the HTML - and try to run the app
+- run app
+- notice the error
+- add `ListItemComponent` to exports of `ListModule`
+
+_list.module_
+
+```ts
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ListComponent } from './list.component';
+import { ListItemComponent } from './list-item/list-item.component';
+import { ListContainerComponent } from './list-container/list-container.component';
+
+@NgModule({
+  declarations: [ListComponent, ListItemComponent, ListContainerComponent],
+  exports: [ListComponent], // add ListItemComponent
+  imports: [CommonModule]
+})
+export class ListModule {}
+```
+
+- run again - app should work

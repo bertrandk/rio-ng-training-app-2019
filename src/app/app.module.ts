@@ -16,6 +16,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { AppEffects } from './effects/app.effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
+import { ListModule } from './lib/list/list.module';
+import { GamesModule } from './games/games.module';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent],
@@ -27,12 +29,14 @@ import { environment } from '../environments/environment';
     CoreModule,
     ReactiveFormsModule,
     SharedModule,
-    AppRoutingModule,
+    GamesModule,
     StoreModule.forRoot(reducers, { metaReducers }),
     EffectsModule.forRoot([AppEffects]),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    ListModule,
+    AppRoutingModule
   ],
-  exports: [TrainingMaterialModule],
+  exports: [TrainingMaterialModule, ListModule],
   providers: [],
   bootstrap: [AppComponent]
 })

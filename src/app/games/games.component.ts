@@ -6,10 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./games.component.scss']
 })
 export class GamesComponent implements OnInit {
+  items: string[] = ['Games item 1', 'Games item 2', 'Games Item 3'];
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }
