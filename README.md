@@ -350,3 +350,9 @@ ng add @ngrx/store --statePath store/reducers
 ng add @ngrx/effects  --m app.module.ts --group=true --flat=true
 ng add @ngrx/store-devtools
 ```
+
+- setup a profile edit page
+
+```
+ng g component profile/components/profile-edit --flat=true --m=profile
+```

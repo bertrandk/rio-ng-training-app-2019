@@ -1,0 +1,321 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>rio-ng-training-app documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+	      <link rel="stylesheet" href="./styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="./" class="navbar-brand">rio-ng-training-app documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content getting-started">
+                   <div class="content-data">
+
+<h1 id="riongtrainingapp">RioNgTrainingApp</h1>
+<p>This project was generated with <a href="https://github.com/angular/angular-cli">Angular CLI</a> version 7.3.2.</p>
+<h2 id="development-server">Development server</h2>
+<p>Run <code>ng serve</code> for a dev server. Navigate to <code>http://localhost:4200/</code>. The app will automatically reload if you change any of the source files.</p>
+<h2 id="code-scaffolding">Code scaffolding</h2>
+<p>Run <code>ng generate component component-name</code> to generate a new component. You can also use <code>ng generate directive|pipe|service|class|guard|interface|enum|module</code>.</p>
+<h2 id="build">Build</h2>
+<p>Run <code>ng build</code> to build the project. The build artifacts will be stored in the <code>dist/</code> directory. Use the <code>--prod</code> flag for a production build.</p>
+<h2 id="running-unit-tests">Running unit tests</h2>
+<p>Run <code>ng test</code> to execute the unit tests via <a href="https://karma-runner.github.io">Karma</a>.</p>
+<h2 id="running-end-to-end-tests">Running end-to-end tests</h2>
+<p>Run <code>ng e2e</code> to execute the end-to-end tests via <a href="http://www.protractortest.org/">Protractor</a>.</p>
+<h2 id="further-help">Further help</h2>
+<p>To get more help on the Angular CLI use <code>ng help</code> or go check out the <a href="https://github.com/angular/angular-cli/blob/master/README.md">Angular CLI README</a></p>
+<h2 id="initial-setup">Initial Setup</h2>
+<p>Project was generated with the CLI. Initial scaffolding was generated with the following commands:</p>
+<h3 id="core-and-shared-modules">Core and Shared Modules</h3>
+<div><pre class="line-numbers"><code class="language-bash">ng g module core --flat=false --m=app
+ng g module shared --flat=false --m=app</code></pre></div><h3 id="feature-modules">Feature Modules</h3>
+<div><pre class="line-numbers"><code class="language-bash">ng generate module profile/profile --flat --routing
+ng generate module games/games --flat --routing
+ng generate module dashboard/dashboard --flat --routing</code></pre></div><h3 id="entry-components-for-each-feature-module">Entry Components for each feature module</h3>
+<div><pre class="line-numbers"><code class="language-bash">ng g component games/games --flat=true --m=games
+ng g component profile/profile --flat=true --m=profile
+ng g component dashboard/dashboard --flat=true --m=dashboard</code></pre></div><h3 id="application-header-setup">Application Header Setup</h3>
+<div><pre class="line-numbers"><code class="language-bash">ng g component core/site-header --m=core --export=true</code></pre></div><h3 id="application-home-setup">Application Home Setup</h3>
+<div><pre class="line-numbers"><code class="language-none">ng g component components/home --m=app --export=false</code></pre></div><p>a# RioNgTrainingApp</p>
+<p>This project was generated with <a href="https://github.com/angular/angular-cli">Angular CLI</a> version 7.3.2.</p>
+<h2 id="development-server">Development server</h2>
+<p>Run <code>ng serve</code> for a dev server. Navigate to <code>http://localhost:4200/</code>. The app will automatically reload if you change any of the source files.</p>
+<h2 id="code-scaffolding">Code scaffolding</h2>
+<p>Run <code>ng generate component component-name</code> to generate a new component. You can also use <code>ng generate directive|pipe|service|class|guard|interface|enum|module</code>.</p>
+<h2 id="build">Build</h2>
+<p>Run <code>ng build</code> to build the project. The build artifacts will be stored in the <code>dist/</code> directory. Use the <code>--prod</code> flag for a production build.</p>
+<h2 id="running-unit-tests">Running unit tests</h2>
+<p>Run <code>ng test</code> to execute the unit tests via <a href="https://karma-runner.github.io">Karma</a>.</p>
+<h2 id="running-end-to-end-tests">Running end-to-end tests</h2>
+<p>Run <code>ng e2e</code> to execute the end-to-end tests via <a href="http://www.protractortest.org/">Protractor</a>.</p>
+<h2 id="further-help">Further help</h2>
+<p>To get more help on the Angular CLI use <code>ng help</code> or go check out the <a href="https://github.com/angular/angular-cli/blob/master/README.md">Angular CLI README</a></p>
+<h2 id="initial-setup">Initial Setup</h2>
+<p>Project was generated with the CLI. Initial scaffolding was generated with the following commands:</p>
+<h3 id="core-and-shared-modules">Core and Shared Modules</h3>
+<div><pre class="line-numbers"><code class="language-bash">ng g module core --flat=false --m=app
+ng g module shared --flat=false --m=app</code></pre></div><h3 id="feature-modules">Feature Modules</h3>
+<div><pre class="line-numbers"><code class="language-bash">ng generate module profile/profile --flat --routing
+ng generate module games/games --flat --routing
+ng generate module dashboard/dashboard --flat --routing</code></pre></div><h3 id="entry-components-for-each-feature-module">Entry Components for each feature module</h3>
+<div><pre class="line-numbers"><code class="language-bash">ng g component games/games --flat=true --m=games
+ng g component profile/profile --flat=true --m=profile
+ng g component dashboard/dashboard --flat=true --m=dashboard</code></pre></div><h3 id="application-header-setup">Application Header Setup</h3>
+<div><pre class="line-numbers"><code class="language-bash">ng g component core/site-header --m=core --export=true</code></pre></div><h3 id="application-home-setup">Application Home Setup</h3>
+<div><pre class="line-numbers"><code class="language-none">ng g component components/home --m=app --export=false</code></pre></div><h2 id="profile-form-setup">Profile Form Setup</h2>
+<ul>
+<li>Generate Profile Route Landing</li>
+</ul>
+<div><pre class="line-numbers"><code class="language-bash">ng g component profile/profile --flat=true --m=profile</code></pre></div><ul>
+<li>Add Router Outlet to Template</li>
+</ul>
+<div><pre class="line-numbers"><code class="language-html">&lt;router-outlet&gt;&lt;/router-outlet&gt;</code></pre></div><ul>
+<li>Create Profile Edit Form</li>
+</ul>
+<div><pre class="line-numbers"><code class="language-bash">ng g component profile/components/profile-edit-form --flat=true --m=profile</code></pre></div><ul>
+<li>Profile: Setup Routing to Compomnent</li>
+</ul>
+<div><pre class="line-numbers"><code class="language-ts">import { NgModule } from &#39;&#64;angular/core&#39;;
+import { Routes, RouterModule } from &#39;&#64;angular/router&#39;;
+import { ProfileComponent } from &#39;./profile.component&#39;;
+import { ProfileEditFormComponent } from &#39;./components/profile-edit-form.component&#39;;
+
+const routes: Routes = [
+  {
+    path: &#39;&#39;,
+    component: ProfileComponent,
+    children: [
+      {
+        path: &#39;edit&#39;,
+        component: ProfileEditFormComponent
+      },
+      {
+        path: &#39;&#39;,
+        redirectTo: &#39;edit&#39;
+      }
+    ]
+  }
+];
+
+&#64;NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
+})
+export class ProfileRoutingModule {}</code></pre></div><ul>
+<li>Have the <code>Profile</code> component in the <code>ProfileModule</code></li>
+</ul>
+<div><pre class="line-numbers"><code class="language-ts">import { NgModule } from &#39;&#64;angular/core&#39;;
+import { CommonModule } from &#39;&#64;angular/common&#39;;
+
+import { ProfileRoutingModule } from &#39;./profile-routing.module&#39;;
+import { ProfileComponent } from &#39;./profile.component&#39;;
+import { ProfileEditFormComponent } from &#39;./components/profile-edit-form.component&#39;;
+
+&#64;NgModule({
+  declarations: [ProfileEditFormComponent, ProfileComponent],
+  imports: [CommonModule, ProfileRoutingModule],
+  entryComponents: []
+})
+export class ProfileModule {}
+``
+
+- App: Setup Profile Route
+
+import { NgModule } from &#39;&#64;angular/core&#39;;
+import { Routes, RouterModule } from &#39;&#64;angular/router&#39;;
+import { HomeComponent } from &#39;./components/home/home.component&#39;;
+
+const routes: Routes = [
+  {
+    path: &#39;profile&#39;,
+    loadChildren: &#39;./profile/profile.module#ProfileModule&#39;
+  },
+  {
+    path: &#39;&#39;,
+    component: HomeComponent
+  }
+];
+
+&#64;NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule {}</code></pre></div><h2 id="reactive-form-validators">Reactive Form Validators</h2>
+<ul>
+<li>Can apply validators at the field level</li>
+<li>FormGroup level</li>
+<li>FormArray level</li>
+</ul>
+<h3 id="requirements">Requirements</h3>
+<ul>
+<li>Create an <code>email</code> and <code>confirmEmail</code> form field</li>
+<li>Create a custom validator that ensures they are the same value</li>
+<li>Display an error message if the fields do not match</li>
+</ul>
+<h4 id="extra">Extra</h4>
+<ul>
+<li>Can you make the validator more general to compare any two fields, and not have the field names hardcoded?</li>
+<li>How would you make the error name configurable also?</li>
+</ul>
+<h3 id="custom-validators">Custom Validators</h3>
+<ul>
+<li>When applied at the field level, get access to the FieldControl.</li>
+<li>When applied at the group level, get access to the FieldGroup.</li>
+<li>Validators return null if they are valid.</li>
+<li>Validators return an object with validation details if they are in valid.</li>
+<li>You can create functions that return a validator if you want to apply a configuration.</li>
+</ul>
+<p>Example from the <code>Validators.max</code><a href="https://github.com/angular/angular/blob/81671cea9a2ca677dfcf433b6f3e5a27da944f6e/packages/forms/src/validators.ts#L125">source</a></p>
+<div><pre class="line-numbers"><code class="language-ts">function max(max: number): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null =&gt; {
+    if (isEmptyInputValue(control.value) || isEmptyInputValue(max)) {
+      return null; // don&#39;t validate empty values to allow optional controls
+    }
+    const value = parseFloat(control.value);
+    // Controls with NaN values after parsing should be treated as not having a
+    // maximum, per the HTML forms spec: https://www.w3.org/TR/html5/forms.html#attr-input-max
+    return !isNaN(value) &amp;&amp; value &gt; max ? { max: { max: max, actual: control.value } } : null;
+  };
+}</code></pre></div><p><em>note</em> : the top level key in the object that you return, is what the error will be called, and you can check if a field / form has an error using</p>
+<div><pre class="line-numbers"><code class="language-ts">fb.hasError(&#39;max&#39;);
+fb.get(&#39;someField&#39;).hasError(&#39;max)</code></pre></div><h3 id="displaying-errors">Displaying Errors</h3>
+<div><pre class="line-numbers"><code class="language-html">&lt;mat-error *ngIf=&quot;form.get(&#39;firstName&#39;).hasError(&#39;required&#39;)&quot;&gt;
+  First Name is a required field.
+&lt;/mat-error&gt;</code></pre></div><p>You can also use <code>*ngIf/as</code> to get the underlying error object:</p>
+<div><pre class="line-numbers"><code class="language-html">&lt;mat-error *ngIf=&quot;form.get(&#39;averageNumberOfHoursPerDay&#39;).getError(&#39;min&#39;) as min&quot;&gt;
+  Minimum value is {{ min.min }}, got {{ min.actual }} instead
+&lt;/mat-error&gt;</code></pre></div><h2 id="services-di">Services / DI</h2>
+<h3 id="requirements">Requirements</h3>
+<ul>
+<li>Create a ProfileData service in the ProfileModule</li>
+<li>Create an Interface under app/models to describe the shape of the profile</li>
+<li>URL: <a href="https://rio-ng-training.now.sh/profile">https://rio-ng-training.now.sh/profile</a><ul>
+<li>GET</li>
+<li>PUT</li>
+<li>POST</li>
+</ul>
+</li>
+<li>Use service to populate correct name in app header</li>
+<li>Use service to populate profile edit form</li>
+<li>Update form to submit details to API</li>
+</ul>
+<p>example json response:</p>
+<div><pre class="line-numbers"><code class="language-json"> {
+    &quot;id&quot;: 1,
+    &quot;image&quot;: &quot;profile-image.jpg&quot;,
+    &quot;languageId&quot;: 1,
+    &quot;firstName&quot;: &quot;Evan&quot;,
+    &quot;lastName&quot;: &quot;Schultz&quot;,
+    &quot;averageNumberOfHoursPerDay&quot;: 3,
+    &quot;email&quot;: &quot;evan&#64;rangle.io&quot;
+  },</code></pre></div><div><pre class="line-numbers"><code class="language-bash">ng g service profile/services/profile-data</code></pre></div><h4 id="extra">Extra</h4>
+<ul>
+<li>When you save the form - check what response comes back from the server</li>
+<li>Are there any extra properties we don&#39;t want, and why?</li>
+<li>How can we protect against this?</li>
+</ul>
+<h2 id="ngrx-shared-state">NgRx / Shared State</h2>
+<p>We now have a bit of a problem - we want to have the profile name display in the header, and be
+reflected when we update the profile.</p>
+<p>Right now this state isn&#39;t being stored anywhere.</p>
+<h3 id="requirements">Requirements</h3>
+<ul>
+<li>Setup NgRx Store for profile</li>
+<li>Create reducer for managing profile state</li>
+<li>Create Effect for calling the API</li>
+<li>Update the Navigation Header to read name from state</li>
+<li>Update Edit Form to get details from state</li>
+</ul>
+<h3 id="ngrx-setup-with-cli">NgRx Setup with CLI</h3>
+<div><pre class="line-numbers"><code class="language-bash">ng add &#64;ngrx/store --statePath store/reducers
+ng add &#64;ngrx/effects  --m app.module.ts --group=true --flat=true
+ng add &#64;ngrx/store-devtools</code></pre></div><ul>
+<li>setup a profile edit page</li>
+</ul>
+<div><pre class="line-numbers"><code class="language-none">ng g component profile/components/profile-edit --flat=true --m=profile</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 0;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'getting-started';
+            var COMPODOC_CURRENT_PAGE_URL = 'index.html';
+       </script>
+
+       <script src="./js/libs/custom-elements.min.js"></script>
+       <script src="./js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="./js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="./js/menu-wc.js" defer></script>
+
+       <script src="./js/libs/bootstrap-native.js"></script>
+
+       <script src="./js/libs/es6-shim.min.js"></script>
+       <script src="./js/libs/EventDispatcher.js"></script>
+       <script src="./js/libs/promise.min.js"></script>
+       <script src="./js/libs/zepto.min.js"></script>
+
+       <script src="./js/compodoc.js"></script>
+
+       <script src="./js/tabs.js"></script>
+       <script src="./js/menu.js"></script>
+       <script src="./js/libs/clipboard.min.js"></script>
+       <script src="./js/libs/prism.js"></script>
+       <script src="./js/sourceCode.js"></script>
+          <script src="./js/search/search.js"></script>
+          <script src="./js/search/lunr.min.js"></script>
+          <script src="./js/search/search-lunr.js"></script>
+          <script src="./js/search/search_index.js"></script>
+       <script src="./js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

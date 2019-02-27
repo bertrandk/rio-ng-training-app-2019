@@ -20,7 +20,7 @@ export class AppEffects {
   );
   @Effect()
   saveProfile$ = this.actions$.pipe(
-    ofType(ProfileActions.SAVE_PROFILE),
+    ofType<ProfileStore.SaveProfile>(ProfileActions.SAVE_PROFILE),
     mergeMap(({ payload }) => {
       return this.profileData.put(payload).pipe(
         map(profile => new ProfileStore.SaveProfileSuccess(profile)),
