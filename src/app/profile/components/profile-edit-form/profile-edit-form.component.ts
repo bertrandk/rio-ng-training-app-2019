@@ -4,7 +4,7 @@ import { ProfileDataService } from '../../services/profile-data.service';
 import { Store, select } from '@ngrx/store';
 import { State } from '../../../store/reducers';
 import { take, filter, tap } from 'rxjs/operators';
-import { SaveProfile } from 'src/app/store/reducers/profile.reducer';
+import { SaveProfile } from '../../../store/reducers/profile.reducer';
 
 import { Profile } from '../../../models/profile.dto';
 

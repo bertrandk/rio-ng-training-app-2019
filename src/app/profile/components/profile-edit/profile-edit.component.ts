@@ -3,7 +3,7 @@ import { Store, select } from '@ngrx/store';
 import { State } from '../../../store/reducers';
 import { Observable } from 'rxjs';
 import { Profile } from '../../../models/profile.dto';
-import { SaveProfile } from 'src/app/store/reducers/profile.reducer';
+import { SaveProfile } from '../../../store/reducers/profile.reducer';
 
 @Component({
   selector: 'app-profile-edit',
