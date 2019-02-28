@@ -39,6 +39,7 @@ export class CurrencyMaskDirective implements AfterViewInit, ControlValueAccesso
   onChange = (_: any) => {};
   onTouched = () => {};
   writeValue(value: any): void {
+    this.rawValue = parseFloat(value);
     this.displayValue = value == null ? '' : this.cp.transform(value, this.currencyCode, this.display, this.digitsInfo, this.locale);
     this.renderer.setProperty(this.elementRef.nativeElement, 'value', this.displayValue);
   }
