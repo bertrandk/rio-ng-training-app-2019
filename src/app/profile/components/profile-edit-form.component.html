@@ -19,8 +19,8 @@
             </mat-error>
           </mat-form-field>
           <mat-form-field>
-            <mat-label>Avg Play Per Day</mat-label>
-            <input matInput formControlName="averageNumberOfHoursPerDay" type="number" />
+            <mat-label>Avg Play Per Day {{ form.get('averageNumberOfHoursPerDay').value }}</mat-label>
+            <input matInput appCurrencyMask formControlName="averageNumberOfHoursPerDay" />
             <mat-error *ngIf="form.get('averageNumberOfHoursPerDay').hasError('required')">
               Avg Play Per Dayis a required field.
             </mat-error>
