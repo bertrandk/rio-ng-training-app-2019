@@ -7,11 +7,15 @@ import { GamesListComponent } from './components/games-list/games-list.component
 import { GamesEditComponent } from './components/games-edit/games-edit.component';
 import { GamesEditFormComponent } from './components/games-edit-form/games-edit-form.component';
 
+import { TrainingMaterialModule } from 'src/training-material.module';
+
 @NgModule({
-  declarations: [GamesComponent, GamesListComponent, GamesEditComponent, GamesEditFormComponent],
-  imports: [
-    CommonModule,
-    GamesRoutingModule
-  ]
+  declarations: [
+    GamesComponent,
+    GamesListComponent,
+    GamesEditComponent,
+    GamesEditFormComponent
+  ],
+  imports: [CommonModule, GamesRoutingModule, TrainingMaterialModule]
 })
-export class GamesModule { }
+export class GamesModule {}

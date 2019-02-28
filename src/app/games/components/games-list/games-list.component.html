@@ -1,3 +1,9 @@
 <section>
-  Games List!
+  <ul>
+    <li *ngFor="let game of games">
+      <a matLink [routerLink]="['./edit/', game.id]"
+        >{{ game.name }} - {{ game.platformName }}</a
+      >
+    </li>
+  </ul>
 </section>

@@ -5,14 +5,21 @@ import { Observable, of as observableOf, EMPTY, pipe } from 'rxjs';
 import { catchError, map, startWith, switchMap } from 'rxjs/operators';
 
 import * as featureActions from './actions';
+import { GameDataService } from '../../games/game-data.service';
+import { Game } from '../../models/game';
 
 @Injectable()
 export class GamesStoreEffects {
-  constructor(private actions$: Actions) {}
+  constructor(private actions$: Actions, private gameData: GameDataService) {}
   // finish this service for loading games
   @Effect()
-  loadGamesRequest$: Observable<any> = this.actions$.pipe(
+  loadGamesRequest$: Observable<Action> = this.actions$.pipe(
     ofType<featureActions.LoadGames>(featureActions.ActionTypes.LOAD_GAMES),
-    map(_ => EMPTY)
+    switchMap(() => {
+      return this.gameData.list().pipe(
+        map((games: Game[]) => new featureActions.LoadGamesSuccess(games)),
+        catchError(() => EMPTY)
+      );
+    })
   );
 }

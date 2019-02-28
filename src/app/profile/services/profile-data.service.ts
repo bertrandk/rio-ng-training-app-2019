@@ -3,27 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Profile } from '../../models/profile.dto';
 
 const BASE_URL = `https://rio-ng-training.now.sh/profile`;
-/*
-export interface Profile {
-  id: number;
-  image: string;
-  languageId: number;
-  firstName: string;
-  lastName: string;
-  averageNumberOfHoursPerDay: number;
-  email: string;
-}
-*/
-/*
-const buildProfile = ({ id, image, languageId, firstName, lastName, averageNumberOfHoursPerDay, email }): Profile => ({
-  id,
-  image,
-  languageId,
-  firstName,
-  lastName,
-  averageNumberOfHoursPerDay,
-  email
-});*/
+
 @Injectable({
   providedIn: 'root'
 })

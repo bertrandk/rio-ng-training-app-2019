@@ -1,7 +1,7 @@
 <section>
-  <ng-container *ngIf="(games$ | async) as games">
+  <ng-container *ngIf="(fullGames$ | async) as games">
     <app-games-list [games]="games"> </app-games-list>
   </ng-container>
-
+  <button (click)="updateName()">Clicks</button>
   <router-outlet></router-outlet>
 </section>

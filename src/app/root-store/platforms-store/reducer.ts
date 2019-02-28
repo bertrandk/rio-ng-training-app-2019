@@ -13,7 +13,20 @@ export function platformReducer(state: State = INITIAL_STATE, action: Actions) {
     case ActionTypes.LOAD_PLATFORMS:
       return { ...state, isLoading: true, error: '' };
     case ActionTypes.LOAD_PLATFORMS_SUCCESS:
-      return { ...state, platforms: [...action.payload], isLoading: false, error: '' };
+      return {
+        ...state,
+        platforms: [...action.payload],
+        isLoading: false,
+        error: ''
+      };
+    case ActionTypes.UPDATE_PLATFORM_NAME:
+      const { id, name } = action.payload;
+      const platforms = state.platforms.map(n => {
+        return n.id === id ? n : { ...n, name };
+      });
+
+      return { ...state, platforms: [...platforms] };
+
     default:
       return state;
   }

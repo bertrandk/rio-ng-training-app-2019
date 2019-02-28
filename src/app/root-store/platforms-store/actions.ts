@@ -4,7 +4,8 @@ export enum ActionTypes {
   LOAD_PLATFORMS = 'LOAD_PLATFORMS',
   LOAD_PLATFORMS_SUCCESS = 'LOAD_PLATFORMS_SUCCESS',
   SAVE_PLATFORM = 'SAVE_PLATFORM',
-  SAVE_PLATFORM_SUCCESS = 'SAVE_PLATFORM_SUCCESS'
+  SAVE_PLATFORM_SUCCESS = 'SAVE_PLATFORM_SUCCESS',
+  UPDATE_PLATFORM_NAME = 'UPDATE_PLATFORM_NAME'
 }
 
 export class LoadPlatforms implements Action {
@@ -22,4 +23,15 @@ export class SavePlatformSuccess implements Action {
   readonly type = ActionTypes.SAVE_PLATFORM_SUCCESS;
   constructor(public payload: Platform) {}
 }
-export type Actions = LoadPlatforms | LoadPlatformsSuccess | SavePlatform | SavePlatformSuccess;
+
+export class UpdatePlatformName implements Action {
+  readonly type = ActionTypes.UPDATE_PLATFORM_NAME;
+  constructor(public payload: { id: number; name: string }) {}
+}
+
+export type Actions =
+  | LoadPlatforms
+  | LoadPlatformsSuccess
+  | SavePlatform
+  | SavePlatformSuccess
+  | UpdatePlatformName;
