@@ -13,7 +13,29 @@ export function profileReducer(state: State = INITIAL_STATE, action: Actions) {
       return { ...state, isLoading: true };
     case ActionTypes.SAVE_PROFILE_SUCCESS:
     case ActionTypes.LOAD_PROFILE_SUCCESS:
-      return { ...state, current: { ...action.payload }, isLoading: false };
+      const {
+        id,
+        image,
+        languageId,
+        firstName,
+        lastName,
+        averageNumberOfHoursPerDay,
+        email
+      } = action.payload;
+
+      return {
+        ...state,
+        current: {
+          id,
+          image,
+          languageId,
+          firstName,
+          lastName,
+          averageNumberOfHoursPerDay,
+          email
+        },
+        isLoading: false
+      };
     default:
       return state;
   }

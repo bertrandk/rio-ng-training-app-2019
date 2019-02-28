@@ -5,6 +5,10 @@ import { EffectsModule } from '@ngrx/effects';
 import { gamesReducer } from './reducer';
 import { GamesStoreEffects } from './effects';
 @NgModule({
-  imports: [CommonModule, StoreModule.forFeature('games', gamesReducer), EffectsModule.forFeature([GamesStoreEffects])]
+  imports: [
+    CommonModule,
+    StoreModule.forFeature('games', gamesReducer),
+    EffectsModule.forFeature([GamesStoreEffects])
+  ]
 })
 export class GamesStoreModule {}

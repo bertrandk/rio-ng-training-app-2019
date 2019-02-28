@@ -9,7 +9,10 @@ import { ProfileDataService } from '../../profile/services/profile-data.service'
 
 @Injectable()
 export class ProfileStoreEffects {
-  constructor(private profileData: ProfileDataService, private actions$: Actions) {}
+  constructor(
+    private profileData: ProfileDataService,
+    private actions$: Actions
+  ) {}
 
   @Effect()
   initEffect$: Observable<Action> = this.actions$.pipe(
@@ -27,6 +30,7 @@ export class ProfileStoreEffects {
       )
     )
   );
+
   @Effect()
   saveProfileRequest$: Observable<Action> = this.actions$.pipe(
     ofType<featureActions.SaveProfile>(featureActions.ActionTypes.SAVE_PROFILE),
