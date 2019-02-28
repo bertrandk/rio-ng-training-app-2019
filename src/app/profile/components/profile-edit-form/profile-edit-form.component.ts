@@ -52,7 +52,7 @@ export class ProfileEditFormComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.form.setValue(changes.profile.currentValue);
+    this.form.patchValue(changes.profile.currentValue);
   }
 
   ngOnInit() {}
