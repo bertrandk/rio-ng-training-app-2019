@@ -6,14 +6,16 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { ProfileStoreModule } from './profile-store';
 import { GamesStoreModule } from './games-store';
-
+import { PlatformsStoreModule } from './platforms-store';
 @NgModule({
   imports: [
     CommonModule,
-    ProfileStoreModule,
-    GamesStoreModule,
+
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
+    ProfileStoreModule,
+    GamesStoreModule,
+    PlatformsStoreModule,
     StoreDevtoolsModule.instrument({
       maxAge: 25 // Retains last 25 states
     })
