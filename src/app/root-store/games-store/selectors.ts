@@ -4,4 +4,8 @@ import { State } from './state';
 import { pipe } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
 
-export const getGames = (state: State) => state.games;
+export const selectGameState: MemoizedSelector<object, State> = createFeatureSelector<State>('games');
+export const selectGames = createSelector(
+  selectGameState,
+  x => x.games
+);

@@ -4,4 +4,5 @@ export interface Game {
   id?: number;
   name: string;
   platformId: number;
+  [key: string]: any;
 }

@@ -356,3 +356,11 @@ ng add @ngrx/store-devtools
 ```
 ng g component profile/components/profile-edit --flat=true --m=profile
 ```
+
+---
+
+# Games Todo
+
+- Replace hard-coded games list with data loaded from the store
+- Setup store / effects / etc to load platforms
+- create selectors to display the platform name, and not just the id

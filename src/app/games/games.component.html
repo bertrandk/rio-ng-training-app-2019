@@ -2,5 +2,6 @@
   <ng-container *ngIf="(games$ | async) as games">
     <app-games-list [games]="games"> </app-games-list>
   </ng-container>
+
   <router-outlet></router-outlet>
 </section>
