@@ -1,20 +1,4 @@
-import {
-  Component,
-  OnInit,
-  Directive,
-  forwardRef,
-  AfterViewInit,
-  DoCheck,
-  ElementRef,
-  Renderer2,
-  HostListener,
-  SkipSelf,
-  Self,
-  Host,
-  ViewChild,
-  Optional,
-  Inject
-} from '@angular/core';
+import { Component, OnInit, Directive, forwardRef, AfterViewInit, DoCheck, ElementRef, Renderer2, ViewChild } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
