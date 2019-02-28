@@ -5,11 +5,13 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { ProfileStoreModule } from './profile-store';
+import { GamesStoreModule } from './games-store';
 
 @NgModule({
   imports: [
     CommonModule,
     ProfileStoreModule,
+    GamesStoreModule,
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({

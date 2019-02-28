@@ -8,6 +8,10 @@ const routes: Routes = [
     loadChildren: './profile/profile.module#ProfileModule'
   },
   {
+    path: 'games',
+    loadChildren: './games/games.module#GamesModule'
+  },
+  {
     path: '',
     component: HomeComponent
   }
