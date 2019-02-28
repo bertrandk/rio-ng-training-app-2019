@@ -10,12 +10,7 @@ import { SharedModule } from './shared/shared.module';
 import { HomeComponent } from './components/home/home.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { StoreModule } from '@ngrx/store';
-import { reducers, metaReducers } from './store/reducers';
-import { EffectsModule } from '@ngrx/effects';
-import { AppEffects } from './effects/app.effects';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { environment } from '../environments/environment';
+import { RootStoreModule } from './root-store';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent],
@@ -27,10 +22,8 @@ import { environment } from '../environments/environment';
     CoreModule,
     ReactiveFormsModule,
     SharedModule,
-    AppRoutingModule,
-    StoreModule.forRoot(reducers, { metaReducers }),
-    EffectsModule.forRoot([AppEffects]),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
+    RootStoreModule,
+    AppRoutingModule
   ],
   exports: [TrainingMaterialModule],
   providers: [],

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { State } from '../../store/reducers';
-import { map } from 'rxjs/operators';
+import { RootStoreState } from '../../root-store';
+import { map, filter } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -12,6 +12,7 @@ import { Observable } from 'rxjs';
 export class SiteHeaderComponent implements OnInit {
   fullName$: Observable<string> = this.store$.pipe(
     select(n => n.profile.current),
+    filter(n => !!n),
     map(({ firstName, lastName }) => `${firstName} ${lastName}`)
   );
   navItems = [
@@ -31,7 +32,7 @@ export class SiteHeaderComponent implements OnInit {
       link: ['/dashboard']
     }
   ];
-  constructor(private store$: Store<State>) {}
+  constructor(private store$: Store<RootStoreState.State>) {}
 
   ngOnInit() {}
 }

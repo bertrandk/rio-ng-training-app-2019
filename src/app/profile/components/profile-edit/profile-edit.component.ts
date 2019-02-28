@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { State } from '../../../store/reducers';
 import { Observable } from 'rxjs';
+
 import { Profile } from '../../../models/profile.dto';
-import { SaveProfile } from 'src/app/store/reducers/profile.reducer';
+import { RootStoreState, ProfileStoreActions } from '../../../root-store';
 
 @Component({
   selector: 'app-profile-edit',
@@ -11,10 +11,10 @@ import { SaveProfile } from 'src/app/store/reducers/profile.reducer';
   styleUrls: ['./profile-edit.component.scss']
 })
 export class ProfileEditComponent implements OnInit {
-  constructor(private store$: Store<State>) {}
+  constructor(private store$: Store<RootStoreState.State>) {}
   profile$: Observable<Profile> = this.store$.pipe(select(n => n.profile.current));
   onSave(profile: Profile) {
-    this.store$.dispatch(new SaveProfile(profile));
+    this.store$.dispatch(new ProfileStoreActions.SaveProfile(profile));
   }
   ngOnInit() {}
 }

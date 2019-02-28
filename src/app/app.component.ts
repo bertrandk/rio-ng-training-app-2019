@@ -1,8 +1,8 @@
 import { Component, ChangeDetectorRef, OnDestroy, OnInit } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { Store } from '@ngrx/store';
-import { State } from './store/reducers';
-import { LoadProfile } from './store/reducers/profile.reducer';
+import { RootStoreState } from './root-store';
+import { ProfileStoreActions } from './root-store';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +15,7 @@ export class AppComponent implements OnInit, OnDestroy {
   // tslint:disable-next-line: variable-name
   private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private store: Store<State>) {
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private store: Store<RootStoreState.State>) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     // tslint:disable-next-line: deprecation
@@ -23,7 +23,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.store.dispatch(new LoadProfile());
+    this.store.dispatch(new ProfileStoreActions.LoadProfile());
   }
   ngOnDestroy(): void {
     // tslint:disable-next-line: deprecation

@@ -2,11 +2,11 @@ import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChange
 import { FormBuilder, FormGroup, Validators, ValidatorFn } from '@angular/forms';
 import { ProfileDataService } from '../../services/profile-data.service';
 import { Store, select } from '@ngrx/store';
-import { State } from '../../../store/reducers';
+
 import { take, filter, tap } from 'rxjs/operators';
-import { SaveProfile } from 'src/app/store/reducers/profile.reducer';
 
 import { Profile } from '../../../models/profile.dto';
+import { RootStoreState } from '../../../root-store';
 
 function confirmFields(fieldA: string, fieldB: string) {
   return function compare(formGroup: FormGroup): Validators {
@@ -29,16 +29,11 @@ function confirmFields(fieldA: string, fieldB: string) {
   styleUrls: ['./profile-edit-form.component.scss']
 })
 export class ProfileEditFormComponent implements OnInit, OnChanges {
-  constructor(private fb: FormBuilder, private profileData: ProfileDataService, private store$: Store<State>) {}
   @Input() profile: Profile;
   @Output() save: EventEmitter<Profile> = new EventEmitter();
   form: FormGroup;
-  ngOnChanges(changes: SimpleChanges): void {
-    if (!changes.profile.firstChange) {
-      this.form.setValue(changes.profile.currentValue);
-    }
-  }
-  ngOnInit() {
+
+  constructor(private fb: FormBuilder, private profileData: ProfileDataService, private store$: Store<RootStoreState.State>) {
     this.form = this.fb.group(
       {
         id: [],
@@ -55,6 +50,12 @@ export class ProfileEditFormComponent implements OnInit, OnChanges {
       }
     );
   }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.form.setValue(changes.profile.currentValue);
+  }
+
+  ngOnInit() {}
 
   public onSubmit() {
     if (this.form.valid) {
