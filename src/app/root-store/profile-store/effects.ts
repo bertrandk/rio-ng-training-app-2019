@@ -27,4 +27,14 @@ export class ProfileStoreEffects {
       )
     )
   );
+  @Effect()
+  saveProfileRequest$: Observable<Action> = this.actions$.pipe(
+    ofType<featureActions.SaveProfile>(featureActions.ActionTypes.SAVE_PROFILE),
+    switchMap(action =>
+      this.profileData.put(action.payload).pipe(
+        map(profile => new featureActions.SaveProfileSuccess(profile)),
+        catchError(() => EMPTY)
+      )
+    )
+  );
 }

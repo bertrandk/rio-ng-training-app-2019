@@ -3,6 +3,7 @@ import { Store, select } from '@ngrx/store';
 import { RootStoreState } from '../../root-store';
 import { map, filter } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { selectFullName } from '../../root-store/profile-store/selectors';
 
 @Component({
   selector: 'app-site-header',
@@ -10,11 +11,8 @@ import { Observable } from 'rxjs';
   styleUrls: ['./site-header.component.scss']
 })
 export class SiteHeaderComponent implements OnInit {
-  fullName$: Observable<string> = this.store$.pipe(
-    select(n => n.profile.current),
-    filter(n => !!n),
-    map(({ firstName, lastName }) => `${firstName} ${lastName}`)
-  );
+  fullName$: Observable<any> = this.store$.pipe(selectFullName);
+
   navItems = [
     {
       label: 'Game Progression',
