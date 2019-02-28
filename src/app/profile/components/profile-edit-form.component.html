@@ -19,6 +19,18 @@
             </mat-error>
           </mat-form-field>
           <mat-form-field>
+            <mat-label>currency:'CAD':'symbol':'4.2-2':'fr' --- actual value: {{ form.get('maskedNumber').value }}</mat-label>
+            <input
+              matInput
+              appCurrencyMask
+              currencyCode="CAD"
+              display="symbol"
+              digitsInfo="4.2-2"
+              locale="fr"
+              formControlName="maskedNumber"
+            />
+          </mat-form-field>
+          <mat-form-field>
             <mat-label>Avg Play Per Day {{ form.get('averageNumberOfHoursPerDay').value }}</mat-label>
             <input matInput appCurrencyMask formControlName="averageNumberOfHoursPerDay" />
             <mat-error *ngIf="form.get('averageNumberOfHoursPerDay').hasError('required')">

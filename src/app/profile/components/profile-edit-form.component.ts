@@ -1,4 +1,4 @@
-import { Component, OnInit, Directive, forwardRef, AfterViewInit, DoCheck, ElementRef, Renderer2, ViewChild } from '@angular/core';
+import { Component, OnInit, Directive, forwardRef, AfterViewInit, DoCheck, ElementRef, Renderer2, ViewChild, Input } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -29,15 +29,17 @@ export const CURRENCYMASKDIRECTIVE_VALUE_ACCESSOR: any = {
   }
 })
 export class CurrencyMaskDirective implements AfterViewInit, ControlValueAccessor, DoCheck, OnInit, Validator {
-  @ViewChild('input') myInput;
+  @Input() currencyCode: string = undefined;
+  @Input() display = 'symbol';
+  @Input() digitsInfo: string = undefined;
+  @Input() locale: string = undefined;
   constructor(private renderer: Renderer2, private elementRef: ElementRef, private cp: CurrencyPipe) {}
   private rawValue: number;
   private displayValue: string;
   onChange = (_: any) => {};
   onTouched = () => {};
   writeValue(value: any): void {
-    // value that gets written to the DOM / display
-    this.displayValue = value == null ? '' : this.cp.transform(value);
+    this.displayValue = value == null ? '' : this.cp.transform(value, this.currencyCode, this.display, this.digitsInfo, this.locale);
     this.renderer.setProperty(this.elementRef.nativeElement, 'value', this.displayValue);
   }
   registerOnChange(fn: any): void {
@@ -61,9 +63,7 @@ export class CurrencyMaskDirective implements AfterViewInit, ControlValueAccesso
     return null;
   }
   registerOnValidatorChange?(fn: () => void): void {}
-  ngAfterViewInit(): void {
-    console.log(this.myInput);
-  }
+  ngAfterViewInit(): void {}
 }
 
 function confirmFields(fieldA: string, fieldB: string) {
@@ -97,6 +97,7 @@ export class ProfileEditFormComponent implements OnInit {
         languageId: [],
         firstName: ['', [Validators.required]],
         lastName: ['', [Validators.required]],
+        maskedNumber: [''],
         averageNumberOfHoursPerDay: [''],
         email: [],
         confirmEmail: []
@@ -106,6 +107,7 @@ export class ProfileEditFormComponent implements OnInit {
       }
     );
     this.form.patchValue({ averageNumberOfHoursPerDay: 10000 });
+    this.form.patchValue({ maskedNumber: 10000 });
     this.form.valueChanges.subscribe(n => {
       console.log('n is', n);
     });
