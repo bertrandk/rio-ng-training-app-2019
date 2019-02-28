@@ -42,7 +42,7 @@ export class CurrencyMaskDirective implements AfterViewInit, ControlValueAccesso
   }
   registerOnChange(fn: any): void {
     this.onChange = value => {
-      this.rawValue = value == '' ? null : parseFloat(value.replace(/[^0-9\.-]+/g, ''));
+      this.rawValue = value == '' ? null : parseFloat(value.replace(/[^0-9\.-]+/g, '')).toFixed(2);
       // value that gets written to the model
       fn(this.rawValue);
     };
