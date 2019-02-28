@@ -10,7 +10,7 @@ export class SiteHeaderComponent implements OnInit {
     {
       label: 'Game Progression',
       ariaLabel: 'Game Progression',
-      link: ['/']
+      link: ['/profile']
     },
     {
       label: 'Games',
@@ -21,9 +21,6 @@ export class SiteHeaderComponent implements OnInit {
       label: 'Dashboard',
       ariaLabel: 'Dashboard',
       link: ['/dashboard']
-    },
-    {
-      isSpacer: true
     },
     {
       label: 'Evan Schultz',
