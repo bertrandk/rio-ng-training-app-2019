@@ -9,11 +9,3 @@ export const selectPlatforms = createSelector(
   selectPlatformState,
   x => x.platforms
 );
-
-export const selectPlatformById = (id: number) =>
-  createSelector(
-    selectPlatforms,
-    platforms => {
-      return platforms.find(n => n.id === id);
-    }
-  );

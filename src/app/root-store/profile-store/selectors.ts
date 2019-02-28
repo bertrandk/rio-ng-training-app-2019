@@ -14,6 +14,6 @@ export const selectCurrentProfile = createSelector(
 
 export const selectFullName = pipe(
   select(selectCurrentProfile),
-  filter(n => !!n),
+  filter((n: Profile) => !!n),
   map(({ firstName, lastName }) => `${firstName} ${lastName}`)
 );
